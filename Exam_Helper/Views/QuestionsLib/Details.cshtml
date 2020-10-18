@@ -55,6 +55,10 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <button type="button" class="btn btn-light">
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+    </button>
+    <button type="button" class="btn btn-light">
+        <a asp-action="Index">Back to List</a> 
+    </button>
 </div>
