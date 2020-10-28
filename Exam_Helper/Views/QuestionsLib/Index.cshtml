@@ -12,50 +12,117 @@
 
         <hr color="brown" />
 
-        <div class="d-flex  bd-highlight pt-3 pb-3">
-            <button type="button" class="btn btn-warning bd-highlight">Добавить Вопрос</button>
-
-            <div class="form-group pt-3 pb-3 bd-highlight ml-auto p-2"></div>
+        <div class="container d-flex bd-highlight pt-3">
+            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseAllQuestion" aria-expanded="true" aria-controls="collapseAllQuestion">
+                Вопросы
+            </button>
+            <button class="btn btn-primary ml-1" type="button" data-toggle="collapse" data-target="#collapsePack" aria-expanded="true" aria-controls="collapsePack">
+                Паки
+            </button>
+            <button class="btn btn-primary ml-1" type="button">
+                +Вопрос
+            </button>
+            <button class="btn btn-primary ml-1" type="button">
+                +Пак
+            </button>
+        </div>
+        <div class="form-group pb-3 bd-highlight ml-auto p-2">
             <span class="mr-3"> Поиск вопроса: </span>
             <form asp-controller="QuestionsLib" asp-action="Index">
                 <input type="text" name="SearchString" class="form-control">
             </form>
         </div>
-    </div>
-        <!-- Массив вопросов, отображение потом настроим -->
-            <table class="table">
-                <thead>
-                    <tr>
-
-                        <th scope="col"> <span>@Html.DisplayNameFor(model => model.Definition)</span> </th>
-                        <th scope="col"> <span>@Html.DisplayNameFor(model => model.Title) </span></th>
-                        <th scope="col">tags</th>
-                        <th scope="col"> </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model)
-                    {
-                    <tr>
-                        <td> <span>@Html.DisplayFor(modelItem => item.Definition) </span></td>
-                        <td> <span>@Html.DisplayFor(modelItem => item.Title) </span></td>
-                        <td> <span>@Html.DisplayFor(modelItem => item.TagIds) </span></td>
-                        <td>
-                            <div class=" d-flex justify-content-center dropdown">
-                                <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Actions
+        <div class="collapse" id="collapseAllQuestion">
+            @foreach (var item in Model)
+            {
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_@item.Id.ToString()" aria-expanded="false" aria-controls="collapse_@item.Id.ToString()">
+                                    <span> @Html.DisplayFor(modelItem => item.Definition) </span>
                                 </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                                    <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">Details</a>
-                                    <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                                </div>
-                                
-                            </div>
-                        </td>
-                    </tr>
+                            </h5>
+                        </div>
 
-                    }
-                </tbody>
-            </table>
+                        <div id="collapse_@item.Id.ToString()" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <span>@Html.DisplayFor(modelItem => item.Title) </span>
+                                <span>@Html.DisplayFor(modelItem => item.TagIds) </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            }
+        </div>
+            <div class="collapse" id="collapsePack">
+                <div class="accordion" id="accordionExample">
+                    <div class="card">
+                        <div class="card-header" id="headingOne">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Collapsible Group Item #1
+                                </button>
+                            </h2>
+                        </div>
+
+                        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div class="card-body">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col"> <span>@Html.DisplayNameFor(model => model.Definition)</span> </th>
+                                            <th scope="col"> <span>@Html.DisplayNameFor(model => model.Title) </span></th>
+                                            <th scope="col">tags</th>
+                                            <th scope="col"> </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td> <p style="max-width: 50ch;">@Html.DisplayFor(modelItem => item.Definition) </p></td>
+                                                <td> <span>@Html.DisplayFor(modelItem => item.Title) </span></td>
+                                                <td> <span>@Html.DisplayFor(modelItem => item.TagIds) </span></td>
+                                                <td>
+                                                    <div class=" d-flex justify-content-center dropdown">
+                                                        <button class="btn btn-light dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            Actions
+                                                        </button>
+                                                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                            <a class="dropdown-item" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
+                                                            <a class="dropdown-item" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                                                            <a class="dropdown-item" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                                                        </div>
+
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingTwo">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Collapsible Group Item #2
+                                </button>
+                            </h2>
+                        </div>
+                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                            <div class="card-body">
+                                Пак
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </main>
