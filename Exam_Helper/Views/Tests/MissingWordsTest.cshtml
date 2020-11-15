@@ -9,33 +9,36 @@
 
 
 
-<p>
-    @if (Model.IsSuccessed)
-    {
-
-        @foreach (var word in Model.Teorem)
+<main style="height: 85vh;" class="d-flex align-items-center">
+    <div>
+        @if (Model.IsSuccessed)
         {
-            if (word[0] == ' ')
+        <div class="pt-3">
+            @foreach (var word in Model.Teorem)
             {
-                <input size="5" class="test" />
+                if (word[0] == ' ')
+                {
+                    <input size="5" class="test" />
+                }
+                else
+                {
+                    <span class="h5">@word</span>
+                }
             }
-            else
-            {
-                <span>@word</span>
-            }
-        }
-        <div class="form-group">
-            <input type="submit" value="Check answers" class="btn btn-primary" id="CheckAnswers" />
         </div>
-    }
-    else
-    {
-        <p>Мы не можем создать данный тест для этого вопроса.</p>
-    }
-    <a asp-controller="PublicLibrary" asp-action="Index">
-        <input type="button" value="Back to the library" class="btn btn-primary" />
-    </a>
-</p>
+            <div class="form-group mt-3">
+                <input type="submit" value="Check answers" class="btn btn-primary" id="CheckAnswers" />
+            </div>
+        }
+        else
+        {
+            <p>Мы не можем создать данный тест для этого вопроса.</p>
+        }
+        <a asp-controller="PublicLibrary" asp-action="Index">
+            <input type="button" value="Back to the library" class="btn btn-primary" />
+        </a>
+    </div>
+</main>
 
 <script>
 
@@ -63,11 +66,11 @@
 <style>
 
     .right {
-        background-color: green;
+        border-color: green;
     }
 
     .wrong {
-        background-color: red;
+        border-color: red;
     }
 </style>
 

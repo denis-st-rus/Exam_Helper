@@ -6,27 +6,31 @@
 <head>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
-
-<div>
-    @if (Model.IsSuccessed)
-    {
-
-        @foreach (var block in Model.TestStrings)
+<main>
+    <div>
+        @if (Model.IsSuccessed)
         {
-            <p>@block</p>
+            @foreach (var block in Model.TestStrings)
+            {
+                <div class="mt-2" style="width:40%;">
+                    <div class="p-0 ">
+                        <div class="border border-info text-center"> @block</div>
+                    </div>
+                </div>
+            }
+            <div class="form-group mt-3">
+                <input type="submit" value="Check answers" class="btn btn-primary" id="CheckAnswers" />
+            </div>
         }
-        <div class="form-group">
-            <input type="submit" value="Check answers" class="btn btn-primary" id="CheckAnswers" />
-        </div>
-    }
-    else
-    {
-        <p>Мы не можем создать данный тест для этого вопроса.</p>
-    }
-    <a asp-controller="PublicLibrary" asp-action="Index">
-        <input type="button" value="Back to the library" class="btn btn-primary" />
-    </a>
-</div>
+        else
+        {
+            <p>Мы не можем создать данный тест для этого вопроса.</p>
+        }
+        <a asp-controller="PublicLibrary" asp-action="Index">
+            <input type="button" value="Back to the library" class="btn btn-primary" />
+        </a>
+    </div>
+</main>
 
 <script>
 
