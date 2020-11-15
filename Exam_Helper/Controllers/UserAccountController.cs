@@ -41,7 +41,7 @@ namespace Exam_Helper.Controllers
                     await _signInManager.SignInAsync(new_user, false);
                     return RedirectToAction("Index", "UserLibrary");
                 }
-
+                 
                 else
                 {
 
