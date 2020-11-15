@@ -42,7 +42,7 @@ namespace Exam_Helper.Controllers
                     if(Url.IsLocalUrl(returnUrl))
                     return RedirectToAction(returnUrl);
                 }
-
+                 
                 else
                 {  
                     foreach (var error in res.Errors)
