@@ -6,15 +6,14 @@
 <head>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
 </head>
-<main>
-    <div>
+<main class="container align-items-center justify-content-center mt-5" style="height:90vh;">
         @if (Model.IsSuccessed)
         {
             @foreach (var block in Model.TestStrings)
             {
                 <div class="mt-2" style="width:40%;">
                     <div class="p-0 ">
-                        <div class="border border-info text-center"> @block</div>
+                        <div class="border border-info text-center" style="border-radius:10px; font-weight:bold;"> @block</div>
                     </div>
                 </div>
             }
@@ -29,7 +28,6 @@
         <a asp-controller="PublicLibrary" asp-action="Index">
             <input type="button" value="Back to the library" class="btn btn-primary" />
         </a>
-    </div>
 </main>
 
 <script>
